@@ -8,36 +8,75 @@
 import SwiftUI
 
 struct ContentView: View {
-//    @State private var name = ""
-//
-//    /**
-//     - Binding variables
-//     -> $variableName : read and write to the same value, two-way binding
-//     -> $variableName: The value of the property is read, and also written back when it's changed.
-//     */
-//    var body: some View {
-//        Form {
-//            TextField("Enter your name", text: $name)
-//            Text("Your name is \(name)")
-//        }
-//    }
+    @State private var checkAmount = 0.0
+    @State private var numberOfPeople = 2
+    @State private var tipPercentage = 20
+    @State private var total = 0.0
 
-    // MARK: - Looping
+    @FocusState private var amountIsFocused: Bool
 
-    let students = ["Harry", "Hermione", "Ron"]
-    @State private var selectedStudent = "Harry"
+    let tipPercentages = [10, 15, 20, 25, 0]
+
+    var totalPerPerson: Double {
+        let peopleCount = Double(numberOfPeople + 2)
+        let tipSelection = Double(tipPercentage)
+
+        let tip = checkAmount / 100 * tipSelection
+        let total = checkAmount + tip
+
+        return total / peopleCount
+    }
 
     var body: some View {
-        Form {
-            Section {
-                ForEach(0 ..< 10) { number in
-                    Text("Row \(number)")
+        NavigationView {
+            Form {
+                Section {
+                    TextField("Amount",
+                              value: $checkAmount,
+                              format: .currency(code: Locale.current.currency?.identifier ?? "EUR"))
+                        .keyboardType(.decimalPad)
+                        .focused($amountIsFocused)
+                }
+
+                Section {
+                    Picker("Number of People", selection: $numberOfPeople) {
+                        ForEach(1 ..< 100) {
+                            Text("\($0) people")
+                        }
+                    }
+                }
+
+                Section {
+                    Picker("Tip Percentage", selection: $tipPercentage) {
+                        ForEach(tipPercentages, id: \.self) {
+                            Text($0, format: .percent)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+
+                } header: {
+                    Text("How much tip do you want to leave?")
+                }
+
+                Section {
+                    Text(total,
+                         format: .currency(code: Locale.current.currency?.identifier ?? "EUR"))
+                } header: {
+                    Text("Total")
+                }
+
+                Section {
+                    Text(totalPerPerson,
+                         format: .currency(code: Locale.current.currency?.identifier ?? "EUR"))
+                } header: {
+                    Text("Per Person")
                 }
             }
-            Section {
-                Picker("Select your student", selection: $selectedStudent) {
-                    ForEach(students, id: \.self) {
-                        Text($0)
+            .navigationTitle("WeSplit")
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Button("Done") {
+                        amountIsFocused = false
                     }
                 }
             }
