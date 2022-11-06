@@ -10,7 +10,8 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack {
-            Image(systemName: "number")
+            Color.brown
+                .frame(minWidth: 200, maxWidth: .infinity, maxHeight: 200)
             VStack {
                 HStack {
                     Text("1")
@@ -29,6 +30,8 @@ struct ContentView: View {
                 }
             }
         }
+        .padding()
+        .background(.yellow)
     }
 }
 
