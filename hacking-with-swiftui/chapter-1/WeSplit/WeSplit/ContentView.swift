@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var tapCount = 0
-
+    @State private var name = ""
+    
+    /**
+     - Binding variables
+     -> $variableName : read and write to the same value, two-way binding
+     -> $variableName: The value of the property is read, and also written back when it's changed.
+     */
     var body: some View {
-        Button("Tap Count: \(tapCount)") {
-            tapCount += 1
+        Form {
+            TextField("Enter your name", text: $name)
+            Text("Your name is \(name)")
         }
     }
 }
