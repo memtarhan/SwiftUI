@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		434DBB092919B0C10060AC76 /* Gradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434DBB082919B0C10060AC76 /* Gradients.swift */; };
 		434DBB0B2919B2BA0060AC76 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434DBB0A2919B2BA0060AC76 /* Buttons.swift */; };
+		434DBB0D2919B58C0060AC76 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434DBB0C2919B58C0060AC76 /* Alerts.swift */; };
 		4369CAF12918067E00844F87 /* GuesTheFlagApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4369CAF02918067E00844F87 /* GuesTheFlagApp.swift */; };
 		4369CAF32918067E00844F87 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4369CAF22918067E00844F87 /* ContentView.swift */; };
 		4369CAF52918068000844F87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4369CAF42918068000844F87 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* Begin PBXFileReference section */
 		434DBB082919B0C10060AC76 /* Gradients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradients.swift; sourceTree = "<group>"; };
 		434DBB0A2919B2BA0060AC76 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
+		434DBB0C2919B58C0060AC76 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		4369CAED2918067E00844F87 /* GuesTheFlag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuesTheFlag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4369CAF02918067E00844F87 /* GuesTheFlagApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuesTheFlagApp.swift; sourceTree = "<group>"; };
 		4369CAF22918067E00844F87 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				4369CAF62918068000844F87 /* Preview Content */,
 				434DBB082919B0C10060AC76 /* Gradients.swift */,
 				434DBB0A2919B2BA0060AC76 /* Buttons.swift */,
+				434DBB0C2919B58C0060AC76 /* Alerts.swift */,
 			);
 			path = GuesTheFlag;
 			sourceTree = "<group>";
@@ -144,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4369CAF32918067E00844F87 /* ContentView.swift in Sources */,
+				434DBB0D2919B58C0060AC76 /* Alerts.swift in Sources */,
 				4369CAF12918067E00844F87 /* GuesTheFlagApp.swift in Sources */,
 				434DBB092919B0C10060AC76 /* Gradients.swift in Sources */,
 				434DBB0B2919B2BA0060AC76 /* Buttons.swift in Sources */,
