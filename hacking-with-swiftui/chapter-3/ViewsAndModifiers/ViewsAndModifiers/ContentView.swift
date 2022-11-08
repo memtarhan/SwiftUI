@@ -7,66 +7,43 @@
 
 import SwiftUI
 
-struct Watermark: ViewModifier {
-    var text: String
-    var alignment: Alignment
+struct GridStack<Content: View>: View {
+    let rows: Int
+    let columns: Int
+    @ViewBuilder let content: (Int, Int) -> Content
 
-    func body(content: Content) -> some View {
-        ZStack(alignment: alignment) {
-            content
-
-            Text(text)
-                .font(.caption)
-                .foregroundColor(.white)
-                .padding(5)
-                .background(.black)
+    var body: some View {
+        VStack(spacing: 5) {
+            ForEach(0 ..< rows, id: \.self) { row in
+                HStack(spacing: 5) {
+                    ForEach(0 ..< columns, id: \.self) { column in
+                        content(row, column)
+                    }
+                }
+            }
         }
-    }
-}
-
-extension View {
-    func watermarked(with text: String, alignment: Alignment) -> some View {
-        modifier(Watermark(text: text, alignment: alignment))
-    }
-}
-
-struct Title: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .font(.largeTitle)
-            .foregroundColor(.white)
-            .padding()
-            .background(.blue)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-    }
-}
-
-extension View {
-    func titleStyle() -> some View {
-        modifier(Title())
     }
 }
 
 struct ContentView: View {
     var body: some View {
         VStack {
-            Text("Title")
-                .modifier(Title())
+            Spacer()
 
-            Text("Title 2")
-                .titleStyle()
+            GridStack(rows: 4, columns: 4) { row, column in
+                Text("R\(row) C\(column)")
+                    .padding()
+                    .background(.yellow)
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
+            }
 
             Spacer()
 
-            Color.blue
-                .frame(width: 200, height: 200)
-                .watermarked(with: "Watermark", alignment: .center)
+            GridStack(rows: 4, columns: 4) { row, column in
+                Image(systemName: "\(row * 4 + column).circle")
+            }
 
             Spacer()
-            
-            Color.red
-                .frame(width: 200, height: 200)
-                .watermarked(with: "Watermark", alignment: .bottomTrailing)
         }
     }
 }
