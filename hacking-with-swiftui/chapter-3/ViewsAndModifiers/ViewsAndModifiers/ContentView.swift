@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var useRedText = false
 
     var body: some View {
-        Button("Hello World!") {
-            useRedText.toggle()
+        // Child version will override environment modifier
+        VStack {
+            Text("London")
+            Text("Lisbon")
+            Text("Paris")
+            Text("Barcelona")
+                .font(.largeTitle)
         }
-        .foregroundColor(useRedText ? .red : .blue)
+        .font(.headline) // Environment modifier 
     }
 }
 
