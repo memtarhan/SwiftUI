@@ -7,49 +7,25 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    var motto1: some View {
-        Text("Draco")
-    }
+struct CapsuleText: View {
+    var text: String
 
-    let motto2 = Text("Nunquam")
-
-    var spells: some View {
-        Group {
-            Text("Lumos")
-            Text("Tuto")
-        }
-    }
-
-    @ViewBuilder var spells2: some View {
-        Text("Lumos")
-        Text("Tuto")
-    }
-    
     var body: some View {
-        VStack {
-            VStack {
-                motto1
-                    .foregroundColor(.red)
-                motto2
-                    .foregroundColor(.blue)
-            }
+        Text(text)
+            .font(.largeTitle)
+            .padding()
+            .foregroundColor(.white)
+            .background(.blue)
+            .clipShape(Capsule())
+    }
+}
 
-            Divider()
-
-            VStack {
-                spells
-            }
-
-            Divider()
-
-            HStack {
-                spells
-            }
-
-            Divider()
-            
-            spells
+struct ContentView: View {
+    var body: some View {
+        VStack(spacing: 10) {
+            CapsuleText(text: "First")
+                .foregroundColor(.red) // Wont' have an affect
+            CapsuleText(text: "Second")
         }
     }
 }
