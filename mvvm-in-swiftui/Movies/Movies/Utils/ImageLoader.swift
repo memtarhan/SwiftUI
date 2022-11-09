@@ -20,6 +20,6 @@ class ImageLoader: ObservableObject {
             DispatchQueue.main.async {
                 self.downloadedData = data
             }
-        }
+        }.resume()
     }
 }

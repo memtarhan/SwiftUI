@@ -13,6 +13,16 @@ struct ContentView: View {
             URLImageView(url: "https://s.studiobinder.com/wp-content/uploads/2017/12/Movie-Poster-Template-Light-With-Image.jpg")
         }
         .padding()
+        .onAppear {
+            HTTPClient().getMovies(bySearch: "batman") { result in
+                switch result {
+                case let .success(movies):
+                    print("fetched movies: \(movies.count)")
+                case let .failure(error):
+                    print("failed to fetch movies: \(error)")
+                }
+            }
+        }
     }
 }
 
