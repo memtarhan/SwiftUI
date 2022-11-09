@@ -19,6 +19,7 @@
 		4353F34B291B1D2200B17972 /* ItemDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4353F34A291B1D2200B17972 /* ItemDetail.swift */; };
 		4353F34D291B312100B17972 /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4353F34C291B312100B17972 /* OrderView.swift */; };
 		4353F34F291B320200B17972 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4353F34E291B320200B17972 /* MainView.swift */; };
+		4353F351291B340000B17972 /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4353F350291B340000B17972 /* CheckoutView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		4353F34A291B1D2200B17972 /* ItemDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetail.swift; sourceTree = "<group>"; };
 		4353F34C291B312100B17972 /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
 		4353F34E291B320200B17972 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		4353F350291B340000B17972 /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				4353F34A291B1D2200B17972 /* ItemDetail.swift */,
 				4353F34C291B312100B17972 /* OrderView.swift */,
 				4353F34E291B320200B17972 /* MainView.swift */,
+				4353F350291B340000B17972 /* CheckoutView.swift */,
 				4353F341291B127B00B17972 /* menu.json */,
 				4353F336291B11F400B17972 /* Assets.xcassets */,
 				4353F338291B11F400B17972 /* Preview Content */,
@@ -164,6 +167,7 @@
 			files = (
 				4353F34B291B1D2200B17972 /* ItemDetail.swift in Sources */,
 				4353F34F291B320200B17972 /* MainView.swift in Sources */,
+				4353F351291B340000B17972 /* CheckoutView.swift in Sources */,
 				4353F34D291B312100B17972 /* OrderView.swift in Sources */,
 				4353F344291B127B00B17972 /* Menu.swift in Sources */,
 				4353F335291B11F300B17972 /* MenuView.swift in Sources */,
