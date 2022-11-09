@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct ItemDetail: View {
+    @EnvironmentObject var order: Order
+
     let item: MenuItem
 
     var body: some View {
-        VStack {
+        VStack(spacing: 32) {
             ZStack(alignment: .bottomTrailing) {
                 Image(item.mainImage)
                     .resizable()
@@ -27,6 +29,13 @@ struct ItemDetail: View {
 
             Text(item.description)
                 .font(.body)
+                        
+            Button("Order") {
+                order.add(item: item)
+            }
+            .font(.headline)
+            .buttonStyle(.borderedProminent)
+            
             Spacer()
         }
         .padding(20)
@@ -38,5 +47,6 @@ struct ItemDetail: View {
 struct ItemDetail_Previews: PreviewProvider {
     static var previews: some View {
         ItemDetail(item: MenuItem.example)
+            .environmentObject(Order())
     }
 }

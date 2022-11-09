@@ -17,6 +17,7 @@
 		4353F347291B127B00B17972 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4353F343291B127B00B17972 /* Order.swift */; };
 		4353F349291B16EC00B17972 /* ItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4353F348291B16EC00B17972 /* ItemRow.swift */; };
 		4353F34B291B1D2200B17972 /* ItemDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4353F34A291B1D2200B17972 /* ItemDetail.swift */; };
+		4353F34D291B312100B17972 /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4353F34C291B312100B17972 /* OrderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		4353F343291B127B00B17972 /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		4353F348291B16EC00B17972 /* ItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRow.swift; sourceTree = "<group>"; };
 		4353F34A291B1D2200B17972 /* ItemDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetail.swift; sourceTree = "<group>"; };
+		4353F34C291B312100B17972 /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,10 +71,11 @@
 				4353F340291B127A00B17972 /* Menu.swift */,
 				4353F343291B127B00B17972 /* Order.swift */,
 				4353F348291B16EC00B17972 /* ItemRow.swift */,
+				4353F34A291B1D2200B17972 /* ItemDetail.swift */,
+				4353F34C291B312100B17972 /* OrderView.swift */,
 				4353F341291B127B00B17972 /* menu.json */,
 				4353F336291B11F400B17972 /* Assets.xcassets */,
 				4353F338291B11F400B17972 /* Preview Content */,
-				4353F34A291B1D2200B17972 /* ItemDetail.swift */,
 			);
 			path = iDine;
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4353F34B291B1D2200B17972 /* ItemDetail.swift in Sources */,
+				4353F34D291B312100B17972 /* OrderView.swift in Sources */,
 				4353F344291B127B00B17972 /* Menu.swift in Sources */,
 				4353F335291B11F300B17972 /* ContentView.swift in Sources */,
 				4353F347291B127B00B17972 /* Order.swift in Sources */,
