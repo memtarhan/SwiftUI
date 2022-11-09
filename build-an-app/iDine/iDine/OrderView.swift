@@ -29,6 +29,7 @@ struct OrderView: View {
                         Text("Place Order")
                     }
                 }
+                .disabled(order.items.isEmpty)
             }
             .navigationTitle("Order")
             .listStyle(.insetGrouped)
