@@ -17,6 +17,7 @@ struct CheckoutView: View {
     @State private var addLoyaltyDetails = false
     @State private var loyaltyNumber = ""
     @State private var selectedTipPercentage = 15
+    @State private var shouldShowConfirmAlert = false
 
     var total: String {
         let formatter = NumberFormatter()
@@ -54,11 +55,15 @@ struct CheckoutView: View {
 
             Section(header: Text("TOTAL: \(total)")) {
                 Button("Confirm order") {
+                    shouldShowConfirmAlert.toggle()
                 }
             }
         }
         .navigationTitle("Checkout")
         .navigationBarTitleDisplayMode(.inline)
+        .alert(isPresented: $shouldShowConfirmAlert) {
+            Alert(title: Text("Order confirmed"), message: Text("Total \(total)"), dismissButton: .default(Text("OK")))
+        }
     }
 }
 
