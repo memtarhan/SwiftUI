@@ -14,10 +14,18 @@ struct MovieListScreen: View {
 
     var body: some View {
         NavigationView {
-            VStack {
-                MovieListView(movies: viewModel.movies)
+            if viewModel.loadingState == .success {
+                VStack {
+                    MovieListView(movies: viewModel.movies)
+                }
+                .navigationTitle("Movies")
+
+            } else if viewModel.loadingState == .failure {
+                FailureView()
+
+            } else if viewModel.loadingState == .loading {
+                LoadingView()
             }
-            .navigationTitle("Movies")
         }
         .searchable(text: $searchQuery)
         .onSubmit(of: .search) {
