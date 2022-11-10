@@ -10,7 +10,7 @@ import SwiftUI
 struct MovieListScreen: View {
     @ObservedObject private var viewModel = MovieListViewModel()
 
-    @State private var query = "batman"
+    @State private var searchQuery = "batman"
 
     var body: some View {
         NavigationView {
@@ -19,10 +19,16 @@ struct MovieListScreen: View {
             }
             .navigationTitle("Movies")
         }
-        .searchable(text: $query) {
+        .searchable(text: $searchQuery)
+        .onSubmit(of: .search) {
+            viewModel.search(byName: searchQuery)
         }
+        .onChange(of: searchQuery) { _ in
+            viewModel.search(byName: searchQuery)
+        }
+
         .onAppear {
-            viewModel.search(byName: query)
+            viewModel.search(byName: searchQuery)
         }
     }
 }
