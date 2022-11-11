@@ -12,20 +12,19 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(pictures, id: \.self) { picture in
-                    AsyncImage(url: URL(string: picture)) { image in
-                        image.resizable()
-                            .scaledToFill()
-                    } placeholder: {
-                        Color.red
-                    }
-
-                    .frame(height: 128)
-                    .clipShape(RoundedRectangle(cornerRadius: 25))
+            List(pictures, id: \.self) { picture in
+                AsyncImage(url: URL(string: picture)) { image in
+                    image.resizable()
+                        .scaledToFill()
+                } placeholder: {
+                    Color.red
                 }
+                .listRowBackground(Color.clear)
+                .frame(height: 128)
+                .clipShape(RoundedRectangle(cornerRadius: 25))
             }
             .listStyle(.insetGrouped)
+            .listRowSeparator(.hidden)
             .navigationTitle("Menu")
         }
     }
