@@ -16,6 +16,8 @@
 		43821DB2292B9474009B2084 /* BucketListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43821DB1292B9474009B2084 /* BucketListUITestsLaunchTests.swift */; };
 		43821DBF292B9D5E009B2084 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43821DBE292B9D5E009B2084 /* MapView.swift */; };
 		43821DC1292BDDA9009B2084 /* BiometricAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43821DC0292BDDA9009B2084 /* BiometricAuth.swift */; };
+		43821DC3292BE14C009B2084 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43821DC2292BE14C009B2084 /* LocationView.swift */; };
+		43821DC5292BE2A1009B2084 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43821DC4292BE2A1009B2084 /* Location.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 		43821DB1292B9474009B2084 /* BucketListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		43821DBE292B9D5E009B2084 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		43821DC0292BDDA9009B2084 /* BiometricAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuth.swift; sourceTree = "<group>"; };
+		43821DC2292BE14C009B2084 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
+		43821DC4292BE2A1009B2084 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,8 @@
 				43821D9A292B9473009B2084 /* Preview Content */,
 				43821DBE292B9D5E009B2084 /* MapView.swift */,
 				43821DC0292BDDA9009B2084 /* BiometricAuth.swift */,
+				43821DC2292BE14C009B2084 /* LocationView.swift */,
+				43821DC4292BE2A1009B2084 /* Location.swift */,
 			);
 			path = BucketList;
 			sourceTree = "<group>";
@@ -265,7 +271,9 @@
 			files = (
 				43821D97292B9473009B2084 /* ContentView.swift in Sources */,
 				43821DBF292B9D5E009B2084 /* MapView.swift in Sources */,
+				43821DC3292BE14C009B2084 /* LocationView.swift in Sources */,
 				43821DC1292BDDA9009B2084 /* BiometricAuth.swift in Sources */,
+				43821DC5292BE2A1009B2084 /* Location.swift in Sources */,
 				43821D95292B9473009B2084 /* BucketListApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
