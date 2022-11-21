@@ -27,14 +27,25 @@ struct ContentView: View {
     let values = [1, 5, 3, 4, 8, 9, 6, 2].sorted()
 
     var body: some View {
-        VStack(spacing: 0) {
-            List(values, id: \.self) {
-                Text("\($0)")
+        Text("Hello World!")
+            .onTapGesture {
+                let string = "Test Message"
+                let url = getDocumentsDirectory().appendingPathComponent("message.txt")
+
+                do {
+                    try string.write(to: url, atomically: true, encoding: .utf8)
+                    let input = try String(contentsOf: url)
+                    print(input)
+
+                } catch {
+                    print(error.localizedDescription)
+                }
             }
-            List(users) { user in
-                Text("\(user.firstName) \(user.lastName)")
-            }
-        }
+    }
+
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
     }
 }
 
