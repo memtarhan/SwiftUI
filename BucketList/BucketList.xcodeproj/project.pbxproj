@@ -14,6 +14,7 @@
 		43821DA6292B9473009B2084 /* BucketListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43821DA5292B9473009B2084 /* BucketListTests.swift */; };
 		43821DB0292B9473009B2084 /* BucketListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43821DAF292B9473009B2084 /* BucketListUITests.swift */; };
 		43821DB2292B9474009B2084 /* BucketListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43821DB1292B9474009B2084 /* BucketListUITestsLaunchTests.swift */; };
+		43821DBF292B9D5E009B2084 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43821DBE292B9D5E009B2084 /* MapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		43821DAB292B9473009B2084 /* BucketListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BucketListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43821DAF292B9473009B2084 /* BucketListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListUITests.swift; sourceTree = "<group>"; };
 		43821DB1292B9474009B2084 /* BucketListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		43821DBE292B9D5E009B2084 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				43821D96292B9473009B2084 /* ContentView.swift */,
 				43821D98292B9473009B2084 /* Assets.xcassets */,
 				43821D9A292B9473009B2084 /* Preview Content */,
+				43821DBE292B9D5E009B2084 /* MapView.swift */,
 			);
 			path = BucketList;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43821D97292B9473009B2084 /* ContentView.swift in Sources */,
+				43821DBF292B9D5E009B2084 /* MapView.swift in Sources */,
 				43821D95292B9473009B2084 /* BucketListApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

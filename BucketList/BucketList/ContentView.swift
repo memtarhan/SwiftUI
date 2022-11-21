@@ -53,7 +53,7 @@ struct ContentView: View {
     var body: some View {
         switch loadingState {
         case .loading:
-            LoadingView()
+            MapView()
 
         case .success:
             SuccessView()
