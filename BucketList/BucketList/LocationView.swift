@@ -8,15 +8,37 @@
 import MapKit
 import SwiftUI
 
-struct LocationView: View {
-    @State private var mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 50, longitude: 0), span: MKCoordinateSpan(latitudeDelta: 25, longitudeDelta: 25))
+class LocationViewModel: ObservableObject {
+    @Published var mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 50, longitude: 0), span: MKCoordinateSpan(latitudeDelta: 25, longitudeDelta: 25))
 
-    @State private var locations = [Location]()
+    @Published var locations = [Location]()
+
+    func addNewLocation() {
+        let location = Location(id: UUID(), name: "New Location", description: "", latitude: mapRegion.center.latitude, longitude: mapRegion.center.longitude)
+        DispatchQueue.main.async {
+            self.locations.append(location)
+        }
+    }
+}
+
+struct LocationView: View {
+    @ObservedObject private var viewModel = LocationViewModel()
 
     var body: some View {
         ZStack {
-            Map(coordinateRegion: $mapRegion, annotationItems: locations) { location in
-                MapMarker(coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
+            Map(coordinateRegion: $viewModel.mapRegion, annotationItems: viewModel.locations) { location in
+                MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)) {
+                    VStack {
+                        Image(systemName: "star.circle")
+                            .resizable()
+                            .foregroundColor(.red)
+                            .frame(width: 44, height: 44)
+                            .background(.white)
+                            .clipShape(Circle())
+
+                        Text(location.name)
+                    }
+                }
             }
             .ignoresSafeArea()
 
@@ -32,8 +54,7 @@ struct LocationView: View {
                     Spacer()
 
                     Button {
-                        let location = Location(id: UUID(), name: "New Location", description: "", latitude: mapRegion.center.latitude, longitude: mapRegion.center.longitude)
-                        locations.append(location)
+                        viewModel.addNewLocation()
                     } label: {
                         Image(systemName: "plus")
                     }
