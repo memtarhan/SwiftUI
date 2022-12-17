@@ -9,47 +9,58 @@ import Speech
 import SwiftUI
 
 struct ContentView: View {
-    private let audioEngine = AVAudioEngine()
-    private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
-    @State private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
-    @State private var recognitionTask: SFSpeechRecognitionTask?
-
+    let audioEngine = AVAudioEngine()
+    let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
+    @State var request = SFSpeechAudioBufferRecognitionRequest()
+    @State var recognitionTask: SFSpeechRecognitionTask?
     @State var message = ""
-    @State var buttonStatus = true
+    @State var newColor: Color = .white
 
     var body: some View {
-        VStack {
-            TextEditor(text: $message)
-                .frame(width: 350, height: 400)
-            Button(buttonStatus ? "Start recording" : "Stop recording", action: {
-                buttonStatus.toggle()
-                if buttonStatus {
-                    stopRecording()
-                } else {
-                    startRecording()
-                }
-            })
-            .padding()
-            .background(buttonStatus ? Color.green : Color.red)
-        }
-        .padding()
+        VStack(spacing: 25) {
+            Button {
+                recognizeSpeech()
+            } label: {
+                Text("Start recording")
+            }
+            TextField("Spoken text appears here", text: $message)
+            Button {
+                message = ""
+                newColor = .white
+                stopSpeech()
+            } label: {
+                Text("Stop recording")
+            }
+        }.background(newColor)
     }
 
-    func stopRecording() {
+    func checkSpokenCommand(commandString: String) {
+        switch commandString {
+        case "Purple":
+            newColor = .purple
+        case "Green":
+            newColor = .green
+        case "Yellow":
+            newColor = .yellow
+        default:
+            newColor = .white
+        }
+    }
+
+    func stopSpeech() {
         audioEngine.stop()
+        request.endAudio()
         recognitionTask?.cancel()
         audioEngine.inputNode.removeTap(onBus: 0)
-        recognitionRequest?.endAudio()
     }
 
-    func startRecording() {
-        message = "Start recording"
+    func recognizeSpeech() {
         let node = audioEngine.inputNode
-        recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-        recognitionRequest?.shouldReportPartialResults = true
+        request = SFSpeechAudioBufferRecognitionRequest()
+        request.shouldReportPartialResults = true
         let recordingFormat = node.outputFormat(forBus: 0)
         node.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { buffer, _ in
-            recognitionRequest?.append(buffer)
+            self.request.append(buffer)
         }
         audioEngine.prepare()
         do {
@@ -63,10 +74,11 @@ struct ContentView: View {
         if !recognizeMe.isAvailable {
             return
         }
-        recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest ?? SFSpeechAudioBufferRecognitionRequest(), resultHandler: { result, error in
+        recognitionTask = speechRecognizer?.recognitionTask(with: request, resultHandler: { result, error in
             if let result = result {
                 let transcribedString = result.bestTranscription.formattedString
                 message = transcribedString
+                checkSpokenCommand(commandString: transcribedString)
             } else if let error = error {
                 print(error)
             }
