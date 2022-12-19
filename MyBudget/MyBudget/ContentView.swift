@@ -6,16 +6,36 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ContentView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(sortDescriptors: []) private var categories: FetchedResults<BudgetCategory>
+    
+    @State private var shouldPresent: Bool = false
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationStack {
+            VStack {
+                List(categories) { category in
+                    HStack {
+                        Text(category.title ?? "")
+                    }
+                }
+            }
+            .sheet(isPresented: $shouldPresent, content: {
+                AddBudgetCategoryView()
+            })
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Add Category") {
+                        shouldPresent = true
+                    }
+                }
+            }
+            .padding()
+
         }
-        .padding()
     }
 }
 
