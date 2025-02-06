@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State var message = ""
     @State var slidervalue = 0.0
+    @State var taskMessage = ""
 
     enum Response {
         case success
@@ -19,12 +20,13 @@ struct ContentView: View {
         VStack {
             Button("Click Me") {
                 let startTime = Date()
-                Thread.sleep(forTimeInterval: 2)
+//                Thread.sleep(forTimeInterval: 2)
                 callFunction()
                 let endTime = Date()
                 message = "Completed in \(endTime.timeIntervalSince(startTime)) seconds"
             }
             Spacer()
+            Text("Task message = \(taskMessage)")
             Slider(value: $slidervalue)
             Text("Message = \(message)")
         }
@@ -32,7 +34,9 @@ struct ContentView: View {
     }
 
     func doSomething() async throws -> Response {
-        .success
+        try await Task.sleep(nanoseconds: 20000000000)
+        taskMessage = "Done now!"
+        return .success
     }
 
     func callFunction() {
