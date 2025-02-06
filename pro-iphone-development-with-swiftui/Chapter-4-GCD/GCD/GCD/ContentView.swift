@@ -13,18 +13,50 @@ struct ContentView: View {
     @State var sliderValue = 0.0
     var body: some View {
         VStack {
-            Button("Click Me") {
-                let startTime = NSDate()
-                let queue = DispatchQueue.global(qos: .default)
-                queue.async {
-                    let fetchedData = fetchSomethingFromServer()
-                    let processedData = processData(fetchedData)
-                    let firstResult = calculateFirstResult(processedData)
-                    let secondResult = calculateSecondResult(processedData)
-                    let resultsSummary = "First: [\(firstResult)]\nSecond: [\(secondResult)]"
-                    results = resultsSummary
-                    let endTime = NSDate()
-                    message = "Completed in \(endTime.timeIntervalSince(startTime as Date)) seconds"
+            HStack {
+                Button("Click Me") {
+                    let startTime = NSDate()
+                    let queue = DispatchQueue.global(qos: .default)
+                    queue.async {
+                        let fetchedData = fetchSomethingFromServer()
+                        let processedData = processData(fetchedData)
+                        let firstResult = calculateFirstResult(processedData)
+                        let secondResult = calculateSecondResult(processedData)
+                        let resultsSummary = "First: [\(firstResult)]\nSecond: [\(secondResult)]"
+                        results = resultsSummary
+                        let endTime = NSDate()
+                        message = "Completed in \(endTime.timeIntervalSince(startTime as Date)) seconds"
+                    }
+                }
+
+                Spacer()
+
+                Button("Dispatch Groups") {
+                    let startTime = Date()
+                    let queue = DispatchQueue.global(qos: .default)
+                    queue.async {
+                        let fetchedData = self.fetchSomethingFromServer()
+                        let processedData = self.processData(fetchedData)
+                        var firstResult: String?
+                        var secondResult: String?
+
+                        let group = DispatchGroup()
+
+                        queue.async(group: group) {
+                            firstResult = self.calculateFirstResult(processedData)
+                        }
+
+                        queue.async(group: group) {
+                            secondResult = self.calculateSecondResult(processedData)
+                        }
+
+                        group.notify(queue: queue) {
+                            let resultsSummary = "First: [\(firstResult!)]\nSecond: [\(secondResult!)]"
+                            let endTime = Date()
+                            results = resultsSummary
+                            message = "Completed in \(endTime.timeIntervalSince(startTime)) seconds"
+                        }
+                    }
                 }
             }
             TextEditor(text: $results)
