@@ -9,8 +9,11 @@ import SwiftUI
 
 struct HomeView: View {
     /// View properties
-    @State private var selectedTab: Tab?
+    @State private var selectedItem: String?
     @Environment(\.colorScheme) private var scheme
+    
+    @State private var tabs: [String] = ["First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth", "Ninth", "Tenth"]
+    @State private var contentData: [Color] = [.red, .blue, .green, .yellow, .orange, .purple, .pink, .gray, .black, .white]
 
     /// Tab Progress
     @State private var tabProgress: CGFloat = 0
@@ -20,7 +23,7 @@ struct HomeView: View {
             headerView
 
             /// Custom Tab Bar
-            CustomTabBar(selectedTab: $selectedTab, tabProgress: $tabProgress)
+            CustomTabBar(data: tabs, selectedItem: $selectedItem, tabProgress: $tabProgress)
 
             contentView
         }
@@ -57,27 +60,22 @@ struct HomeView: View {
             let size = $0.size
             ScrollView(.horizontal) {
                 LazyHStack(spacing: 0) {
-                    SampleView(color: .purple)
-                        .id(Tab.chats)
-                        .containerRelativeFrame(.horizontal)
-
-                    SampleView(color: .red)
-                        .id(Tab.calls)
-                        .containerRelativeFrame(.horizontal)
-
-                    SampleView(color: .blue)
-                        .id(Tab.settings)
-                        .containerRelativeFrame(.horizontal)
+                    ForEach(Array(contentData.enumerated()), id: \.element) { index, element in
+                        SampleView(color: element)
+                            .id(tabs[index])
+                            .containerRelativeFrame(.horizontal)
+                    }
+                    
                 }
                 .scrollTargetLayout()
                 .offsetX { value in
                     /// Converting Offset into Progress
-                    let progress = -value / (size.width * CGFloat(Tab.allCases.count - 1))
+                    let progress = -value / (size.width * CGFloat(contentData.count - 1))
                     /// Capping Progress
                     tabProgress = max(min(progress, 1), 0)
                 }
             }
-            .scrollPosition(id: $selectedTab)
+            .scrollPosition(id: $selectedItem)
             .scrollIndicators(.hidden)
             .scrollTargetBehavior(.paging)
             .scrollClipDisabled()
