@@ -31,7 +31,7 @@ extension View {
     
     /// Tab bar Masking
     @ViewBuilder
-    func tabMask(_ tabProgress: CGFloat, count: Int) -> some View {
+    func tabMask(_ tabProgress: CGFloat, tabsCount: Int) -> some View {
         ZStack {
             self
                 .foregroundStyle(.gray)
@@ -40,7 +40,7 @@ extension View {
                 .mask {
                     GeometryReader {
                         let size = $0.size
-                        let capsuleWidth: CGFloat = size.width / CGFloat(count)
+                        let capsuleWidth: CGFloat = size.width / CGFloat(tabsCount)
 
                         Capsule()
                             .frame(width: capsuleWidth)

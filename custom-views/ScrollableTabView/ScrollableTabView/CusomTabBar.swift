@@ -7,55 +7,73 @@
 
 import SwiftUI
 
+/*
+  ForEach(tabs) { tab in
+      HStack(spacing: 10) {
+          if let systemImage = tab.systemImage {
+              Image(systemName: systemImage)
+          } else if let image = tab.image {
+              Image(image)
+          }
+          Text(tab.rawValue)
+              .font(.callout)
+      }
+      .frame(maxWidth: .infinity)
+      .padding(.vertical, 10)
+      .contentShape(.capsule)
+      .onTapGesture {
+          /// Updating Tab
+          withAnimation(.snappy) {
+ //                        selectedTab = tab
+          }
+      }
+  }
+
+  */
+
 struct CustomTabBar: View {
-    var data: [String]
-    @Binding var selectedItem: String?
-    @Environment(\.colorScheme) private var scheme
+    var tabs: [TabItem]
+    @Binding var selectedTab: TabItem?
     @Binding var tabProgress: CGFloat
+    @Environment(\.colorScheme) private var scheme
 
     var body: some View {
-        ScrollView(.horizontal) {
-            HStack(spacing: 0) {
-                ForEach(data, id: \.self) { item in
-                    HStack(spacing: 10) {
-                        Text(item)
-                            .font(.callout)
+        HStack(spacing: 0) {
+            ForEach(tabs) { tab in
+                HStack(spacing: 16) {
+                    if let systemImage = tab.systemImage {
+                        Image(systemName: systemImage)
+                    } else if let image = tab.image {
+                        Image(image)
                     }
-                    .frame(width: 160)
-                    .padding(.vertical, 10)
-                    .contentShape(.capsule)
-                    .onTapGesture {
-                        /// Updating Tab
-                        withAnimation(.snappy) {
-                            selectedItem = item
-                        }
+                    Text(tab.title)
+                        .font(.callout)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 10)
+                .contentShape(.capsule)
+                .onTapGesture {
+                    /// Updating Tab
+                    withAnimation(.snappy) {
+                        selectedTab = tab
                     }
-                    .id(item)
                 }
             }
-
-            .tabMask(tabProgress, count: data.count)
-            /// Scrollable Active Tab Indicator
-            .background(
-                GeometryReader {
-                    let size = $0.size
-                    let capsuleWidth: CGFloat = size.width / CGFloat(data.count)
-
-                    Capsule()
-                        .fill(scheme == .dark ? .black : .white)
-                        .frame(width: capsuleWidth)
-                        .offset(x: tabProgress * (size.width - capsuleWidth))
-                }
-            )
-            .background(.gray.opacity(0.1), in: .capsule)
-            .padding(.horizontal, 16)
-//            .scrollTargetLayout()
         }
-        .scrollPosition(id: $selectedItem)
-        .scrollTargetBehavior(.paging)
-    }
-}
+        .tabMask(tabProgress, tabsCount: tabs.count)
+        /// Scrollable Active Tab Indicator
+        .background(
+            GeometryReader {
+                let size = $0.size
+                let capsuleWidth: CGFloat = size.width / CGFloat(tabs.count)
 
-#Preview {
-    ContentView()
+                Capsule()
+                    .fill(scheme == .dark ? .black : .white)
+                    .frame(width: capsuleWidth)
+                    .offset(x: tabProgress * (size.width - capsuleWidth))
+            }
+        )
+        .background(.gray.opacity(0.1), in: .capsule)
+        .padding(.horizontal, 16)
+    }
 }
