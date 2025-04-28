@@ -10,17 +10,21 @@ import SwiftUI
 struct HomeView: View {
     /// View properties
     @State private var tabs: [TabModel] = [
-        TabModel(id: .research),
-        TabModel(id: .deployment),
-        TabModel(id: .analytics),
-        TabModel(id: .audience),
-        TabModel(id: .privacy),
+        TabModel(item: TabItem(title: "Research")),
+        TabModel(item: TabItem(title: "Deployment")),
+        TabModel(item: TabItem(title: "Analytics")),
+        TabModel(item: TabItem(title: "Audience")),
+        TabModel(item: TabItem(title: "Privacy")),
     ]
 
-    @State private var activeTab: TabModel.Tab = .research
-    @State private var mainViewScrollState: TabModel.Tab?
-    @State private var tabBarScrollState: TabModel.Tab?
+    @State private var activeTab: TabModel?
+    @State private var mainViewScrollState: TabModel?
+    @State private var tabBarScrollState: TabModel?
     @State private var progress: CGFloat = .zero
+    
+    init() {
+        activeTab = tabs.first
+    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -35,7 +39,7 @@ struct HomeView: View {
                     LazyHStack(spacing: 0) {
                         /// Individual view for each tab
                         ForEach(tabs) { tab in
-                            Text(tab.id.rawValue.capitalized)
+                            Text(tab.item.title.capitalized)
                                 .frame(width: size.width, height: size.height)
                                 .contentShape(.rect)
                         }
@@ -104,14 +108,14 @@ struct HomeView: View {
                 ForEach($tabs) { $tab in
                     Button(action: {
                         withAnimation(.snappy) {
-                            activeTab = tab.id
-                            mainViewScrollState = tab.id
-                            tabBarScrollState = tab.id
+                            activeTab = tab
+                            mainViewScrollState = tab
+                            tabBarScrollState = tab
                         }
                     }) {
-                        Text(tab.id.rawValue.capitalized)
+                        Text(tab.item.title.capitalized)
                             .padding(.vertical, 12)
-                            .foregroundStyle(activeTab == tab.id ? Color.primary : .gray)
+                            .foregroundStyle(activeTab == tab ? Color.primary : .gray)
                             .contentShape(.rect)
                     }
                     .buttonStyle(.plain)
